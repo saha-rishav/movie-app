@@ -9,14 +9,15 @@ const Genres = ({ data }) => {
 
     return (
         <div className='genres'>
-            {/* ? is used for optional Chaning */}
+            {/* ? is used for optional Chainning */}
             {data?.map((g) => {
                 if (!genres[g]?.name) return;
-                <div className="genre" key={g}>
+                return (
+                    <div className="genre" key={g}>
                     {genres[g]?.name}
                 </div>
-            })
-            }
+                )
+            })}
         </div>
     )
 }
