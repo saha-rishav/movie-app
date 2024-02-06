@@ -1,24 +1,33 @@
+// Importing the axios library for making HTTP requests
 import axios from "axios";
 
+// Defining the base URL for the TMDB API
 const BASE_URL = "https://api.themoviedb.org/3"
 
+// Retrieving the TMDB token from environment variables using Vite
 const TMDB_TOKEN = import.meta.env.VITE_APP_TMDB_TOKEN;
-// const TMDB_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YTBlMDdmYTlhZTNjYWYwZWQyMTQzMDJlNTViZGJiMSIsInN1YiI6IjY1ODEzODA1N2U0MDNkMDkwYWY1NDk0OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Cg7AldLMiQ3AXUTBGv5cIBWhKcHtv0kJPA7fSYLU38g";
 
+// Defining headers for authorization, including the TMDB token
 const headers = {
     Authorization: "bearer " + TMDB_TOKEN,
 }
 
-// Method
+// Method for fetching data from the TMDB API
 export const fetchDataFromApi = async (url, params) => {
     try {
+        // Making a GET request to the provided URL with axios
         const { data } = await axios.get(BASE_URL + url, {
-            headers: headers, // We can give only headers also because they are same
+            // Including the headers for authorization
+            headers: headers,
+            // Including any additional parameters in the request
             params,
         })
+        // Returning the fetched data
         return data;
     } catch (err) {
+        // Catching any errors that occur during the request
         console.log("err");
+        // Returning the error object
         return err;
     }
 }
